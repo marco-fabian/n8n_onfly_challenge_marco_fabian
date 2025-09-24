@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@types/node": "^24.5.2",
+    "n8n-workflow": "^1.110.0",
+    "typescript": "^5.9.2"
+  }
+}
