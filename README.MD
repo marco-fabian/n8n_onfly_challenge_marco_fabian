@@ -63,7 +63,7 @@ cd ../n8n-infra
 cp .env.example .env
 ```
 
-**Arquivo .env criado:**
+**Editar o arquivo `.env` com suas próprias senhas:**
 ```env
 POSTGRES_USER=n8n
 POSTGRES_PASSWORD=sua_senha_do_db_aqui
@@ -71,6 +71,8 @@ POSTGRES_DB=n8n
 
 N8N_ENCRYPTION_KEY=sua_senha_aqui
 ```
+
+> **Importante**: Substitua os valores pelos seus próprios antes de executar o Docker Compose.
 
 ### 4. Executar Serviços
 
@@ -171,12 +173,31 @@ https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/
 
 ## 🔧 Troubleshooting
 
+### Problema: Erro de autenticação do PostgreSQL
+```bash
+# Erro: password authentication failed for user "n8n"
+# Solução 1: Verificar se as senhas no .env estão corretas
+cat n8n-infra/.env
+
+# Solução 2: Se mudou a senha, recriar o banco
+docker compose down -v  # Remove volumes
+docker compose up -d    # Recria com novas credenciais
+```
+
 ### Problema: Erro de compilação TypeScript
 ```bash
-# Solução: Reinstalar dependências
+# Erro: Cannot find name 'ErrorOptions' ou módulos não encontrados
+# Solução: Reinstalar dependências com tipos corretos
 cd n8n-node-random
 rm -rf node_modules package-lock.json
 npm install
+npm run build
+```
+
+**Se ainda der erro:**
+```bash
+# Instalar dependências específicas que podem estar faltando
+npm install @types/express @types/ssh2
 npm run build
 ```
 
