@@ -14,12 +14,25 @@
     "build": "tsc",
     "dev": "tsc --watch"
   },
-  "keywords": ["n8n", "random", "node"],
+  "keywords": [
+    "n8n",
+    "random",
+    "node"
+  ],
   "author": "Marco Fabian",
   "license": "MIT",
   "dependencies": {
+    "@langchain/core": "^0.3.77",
+    "@sentry/node": "^10.14.0",
+    "@types/luxon": "^3.7.1",
     "@types/node": "^24.5.2",
+    "axios": "^1.12.2",
+    "express": "^5.1.0",
+    "form-data": "^4.0.4",
+    "luxon": "^3.7.2",
     "n8n-workflow": "^1.110.0",
+    "nock": "^14.0.10",
+    "ssh2": "^1.17.0",
     "typescript": "^5.9.2"
   }
 }
