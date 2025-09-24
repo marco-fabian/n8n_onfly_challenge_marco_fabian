@@ -11,7 +11,8 @@
     ]
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy:assets",
+    "copy:assets": "mkdir -p dist/src/nodes/Random && cp src/nodes/Random/random.svg dist/src/nodes/Random/ && mkdir -p dist/nodes/Random && cp dist/src/nodes/Random/* dist/nodes/Random/",
     "dev": "tsc --watch",
     "test": "jest",
     "test:watch": "jest --watch",

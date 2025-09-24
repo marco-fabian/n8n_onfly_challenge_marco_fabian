@@ -1,5 +1,10 @@
 # n8n Random Node - Custom Connector
 
+[![CI/CD Pipeline](https://github.com/marco-fabian/n8n_onfly_challenge_marco_fabian/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/marco-fabian/n8n_onfly_challenge_marco_fabian/actions)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/marco-fabian/n8n_onfly_challenge_marco_fabian/actions)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/node.js-18%2B-green.svg)](https://nodejs.org/)
+
 Este projeto implementa um conector personalizado para n8n que gera números aleatórios usando a API do Random.org.
 
 ## 🎯 Objetivo
@@ -101,6 +106,12 @@ npm run test:watch
 
 # Executar testes com coverage
 npm run test:coverage
+
+# Executar linting
+npm run lint
+
+# Formatar código
+npm run format
 ```
 
 #### Tipos de Testes
@@ -185,10 +196,20 @@ docker compose ps
 
 Para atualizar o custom node após mudanças:
 
-1. Execute os testes: `npm test`
-2. Compile o código: `npm run build`
-3. Copie o SVG: `cp src/nodes/Random/random.svg dist/nodes/Random/`
-4. Reinicie o n8n: `docker compose restart n8n`
+1. Execute o linting: `npm run lint`
+2. Execute os testes: `npm test`
+3. Compile o código: `npm run build`
+4. Copie o SVG: `cp src/nodes/Random/random.svg dist/nodes/Random/`
+5. Reinicie o n8n: `docker compose restart n8n`
+
+### CI/CD Pipeline
+
+O projeto possui um pipeline automatizado que executa:
+- ✅ **Testes** em múltiplas versões do Node.js (18, 20, 22)
+- ✅ **Linting** e formatação de código
+- ✅ **Build** e validação
+- ✅ **Docker** build test
+- ✅ **Security scan** com Trivy
 
 ## 📞 Suporte
 

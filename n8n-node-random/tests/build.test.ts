@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 
 describe('Build e Compilação', () => {
-  const distPath = path.join(__dirname, '..', 'dist', 'nodes', 'Random');
+  const distPath = path.join(__dirname, '..', 'dist', 'src', 'nodes', 'Random');
 
   test('deve ter gerado o arquivo Random.node.js', () => {
     const filePath = path.join(distPath, 'Random.node.js');
