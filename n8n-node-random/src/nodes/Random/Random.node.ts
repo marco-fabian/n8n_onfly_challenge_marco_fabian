@@ -12,8 +12,8 @@ export class Random implements INodeType {
 		icon: 'file:random.svg',
 		group: ['transform'],
 		version: 1,
-		subtitle: '={{$parameter["operation"]}}',
-		description: 'Generate random numbers',
+		subtitle: 'Números aleatórios',
+		description: 'Gera números aleatórios usando Random.org (com fallback local)',
 		defaults: {
 			name: 'Random',
 		},
@@ -38,7 +38,8 @@ export class Random implements INodeType {
 				name: 'min',
 				type: 'number',
 				default: 1,
-				description: 'Minimum value',
+				description: 'Valor mínimo para o número aleatório. Pode ser negativo (ex: -100)',
+				placeholder: '1',
 				displayOptions: {
 					show: {
 						operation: ['generateRandomNumber'],
@@ -50,7 +51,8 @@ export class Random implements INodeType {
 				name: 'max',
 				type: 'number',
 				default: 100,
-				description: 'Maximum value',
+				description: 'Valor máximo para o número aleatório. Deve ser maior que o mínimo (ex: 1000)',
+				placeholder: '100',
 				displayOptions: {
 					show: {
 						operation: ['generateRandomNumber'],
@@ -69,6 +71,37 @@ export class Random implements INodeType {
 			// Pega os valores de min e max que o usuário configurou
 			const min = this.getNodeParameter('min', i) as number;
 			const max = this.getNodeParameter('max', i) as number;
+
+			// Verificar limites da API Random.org
+			const RANDOM_ORG_MIN = -1000000000;
+			const RANDOM_ORG_MAX = 1000000000;
+
+			if (min < RANDOM_ORG_MIN || min > RANDOM_ORG_MAX || max < RANDOM_ORG_MIN || max > RANDOM_ORG_MAX) {
+				returnData.push({
+					json: {
+						error: 'Valores fora dos limites da Random.org',
+						message: `Min e Max devem estar entre ${RANDOM_ORG_MIN.toLocaleString()} e ${RANDOM_ORG_MAX.toLocaleString()}`,
+						providedMin: min,
+						providedMax: max,
+						validRange: `${RANDOM_ORG_MIN.toLocaleString()} a ${RANDOM_ORG_MAX.toLocaleString()}`,
+						source: 'Validation Error',
+					},
+				});
+				continue;
+			}
+
+			if (min >= max) {
+				returnData.push({
+					json: {
+						error: 'Valores inválidos',
+						message: 'O valor mínimo deve ser menor que o máximo',
+						providedMin: min,
+						providedMax: max,
+						source: 'Validation Error',
+					},
+				});
+				continue;
+			}
 
 			try {
 

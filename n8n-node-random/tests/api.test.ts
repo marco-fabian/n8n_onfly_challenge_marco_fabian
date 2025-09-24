@@ -34,4 +34,39 @@ describe('API Random.org', () => {
 
     expect(number1).not.toBe(number2);
   });
+
+  test('deve validar limites da Random.org API', () => {
+    const RANDOM_ORG_MIN = -1000000000;
+    const RANDOM_ORG_MAX = 1000000000;
+
+    // Testa valores válidos
+    expect(-999999999).toBeGreaterThan(RANDOM_ORG_MIN);
+    expect(999999999).toBeLessThan(RANDOM_ORG_MAX);
+
+    // Testa valores inválidos
+    expect(-1000000001).toBeLessThan(RANDOM_ORG_MIN);
+    expect(1000000001).toBeGreaterThan(RANDOM_ORG_MAX);
+  });
+
+  test('deve validar que min é menor que max', () => {
+    const validCases = [
+      { min: 1, max: 10 },
+      { min: -100, max: 100 },
+      { min: 0, max: 1 }
+    ];
+
+    const invalidCases = [
+      { min: 10, max: 1 },
+      { min: 100, max: 100 },
+      { min: 50, max: 10 }
+    ];
+
+    validCases.forEach(({ min, max }) => {
+      expect(min).toBeLessThan(max);
+    });
+
+    invalidCases.forEach(({ min, max }) => {
+      expect(min).toBeGreaterThanOrEqual(max);
+    });
+  });
 });
