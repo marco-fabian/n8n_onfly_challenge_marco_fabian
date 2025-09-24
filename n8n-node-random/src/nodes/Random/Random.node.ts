@@ -61,13 +61,23 @@ export class Random implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+
 		const items = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
 
 		for (let i = 0; i < items.length; i++) {
+
+			const min = this.getNodeParameter('min', i) as number;
+			const max = this.getNodeParameter('max', i) as number;
+
+
+			const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
 			returnData.push({
 				json: {
-					randomNumber: 42,
+					randomNumber,
+					min,
+					max,
 				},
 			});
 		}
