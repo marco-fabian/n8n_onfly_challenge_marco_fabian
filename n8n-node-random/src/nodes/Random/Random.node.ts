@@ -66,20 +66,45 @@ export class Random implements INodeType {
 		const returnData: INodeExecutionData[] = [];
 
 		for (let i = 0; i < items.length; i++) {
-
+			// Pega os valores de min e max que o usuário configurou
 			const min = this.getNodeParameter('min', i) as number;
 			const max = this.getNodeParameter('max', i) as number;
 
+			try {
+				
+				const url = `https://www.random.org/integers/?num=1&min=${min}&max=${max}&col=1&base=10&format=plain&rnd=new`;
+				
+				// Faz a requisição para a API do Random.org
+				const response = await this.helpers.request({
+					method: 'GET',
+					url: url,
+					json: false,
+				});
 
-			const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+				const randomNumber = parseInt(response.trim(), 10);
 
-			returnData.push({
-				json: {
-					randomNumber,
-					min,
-					max,
-				},
-			});
+				returnData.push({
+					json: {
+						randomNumber,
+						min,
+						max,
+						source: 'Random.org API',
+					},
+				});
+			} catch (error) {
+				// Se a API falhar, usa geração local como fallback
+				const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+				
+				returnData.push({
+					json: {
+						randomNumber,
+						min,
+						max,
+						source: 'Local fallback',
+						error: 'Random.org API unavailable',
+					},
+				});
+			}
 		}
 
 		return [returnData];
