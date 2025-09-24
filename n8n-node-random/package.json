@@ -12,7 +12,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "n8n",
@@ -36,5 +38,10 @@
     "nock": "^14.0.10",
     "ssh2": "^1.17.0",
     "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2"
   }
 }
