@@ -33,6 +33,30 @@ export class Random implements INodeType {
 				],
 				default: 'generateRandomNumber',
 			},
+			{
+				displayName: 'Min',
+				name: 'min',
+				type: 'number',
+				default: 1,
+				description: 'Minimum value',
+				displayOptions: {
+					show: {
+						operation: ['generateRandomNumber'],
+					},
+				},
+			},
+			{
+				displayName: 'Max',
+				name: 'max',
+				type: 'number',
+				default: 100,
+				description: 'Maximum value',
+				displayOptions: {
+					show: {
+						operation: ['generateRandomNumber'],
+					},
+				},
+			},
 		],
 	};
 
