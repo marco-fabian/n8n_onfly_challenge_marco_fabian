@@ -87,6 +87,30 @@ Abra seu navegador em: **http://localhost:5678**
 
 ## 🧪 Testando o Custom Node
 
+### Testes Automatizados
+
+O projeto inclui uma suíte de testes Jest para validar o funcionamento:
+
+```bash
+# Executar todos os testes
+cd n8n-node-random
+npm test
+
+# Executar testes em modo watch
+npm run test:watch
+
+# Executar testes com coverage
+npm run test:coverage
+```
+
+#### Tipos de Testes
+
+- **API Tests**: Validação da integração com Random.org
+- **Fallback Tests**: Verificação do sistema de fallback local
+- **Build Tests**: Validação da compilação TypeScript
+
+### Teste Manual no n8n
+
 1. **Criar novo workflow** no n8n
 2. **Procurar por "Random"** na categoria "Transform"
 3. **Configurar campos**:
@@ -138,6 +162,9 @@ npm run dev
 
 # Produção
 npm run build
+
+# Testes
+npm test
 ```
 
 ## 📝 Logs e Debug
@@ -158,9 +185,10 @@ docker compose ps
 
 Para atualizar o custom node após mudanças:
 
-1. Compile o código: `npm run build`
-2. Copie o SVG: `cp src/nodes/Random/random.svg dist/nodes/Random/`
-3. Reinicie o n8n: `docker compose restart n8n`
+1. Execute os testes: `npm test`
+2. Compile o código: `npm run build`
+3. Copie o SVG: `cp src/nodes/Random/random.svg dist/nodes/Random/`
+4. Reinicie o n8n: `docker compose restart n8n`
 
 ## 📞 Suporte
 
@@ -199,6 +227,17 @@ npm run build
 # Instalar dependências específicas que podem estar faltando
 npm install @types/express @types/ssh2
 npm run build
+```
+
+### Problema: Testes falhando
+```bash
+# Erro: Test suite failed to run
+# Solução: Verificar se Jest está configurado corretamente
+cd n8n-node-random
+npm test
+
+# Se der erro de timeout, verificar conexão com internet ou aumentar o tempo de timeout
+# Os testes de API precisam de conexão com Random.org
 ```
 
 ### Problema: SVG não aparece no n8n
