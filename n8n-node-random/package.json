@@ -1,4 +1,22 @@
 {
+  "name": "n8n-nodes-random",
+  "version": "1.0.0",
+  "description": "n8n custom node for generating random numbers using Random.org API",
+  "main": "index.js",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [],
+    "nodes": [
+      "dist/nodes/Random/Random.node.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": ["n8n", "random", "node"],
+  "author": "Marco Fabian",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^24.5.2",
     "n8n-workflow": "^1.110.0",
