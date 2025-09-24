@@ -30,10 +30,10 @@ jobs:
       working-directory: ./n8n-node-random
       run: npm run lint
       
-    - name: Run tests
-      working-directory: ./n8n-node-random
-      run: npm test
-      
     - name: Build project
       working-directory: ./n8n-node-random
       run: npm run build
+      
+    - name: Run tests
+      working-directory: ./n8n-node-random
+      run: npm test
