@@ -91,7 +91,7 @@ export class Random implements INodeType {
 						source: 'Random.org API',
 					},
 				});
-			} catch (error) {
+			} catch {
 				// Se a API falhar, usa geração local como fallback
 				const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 				
