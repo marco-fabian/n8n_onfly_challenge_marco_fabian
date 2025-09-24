@@ -205,11 +205,9 @@ Para atualizar o custom node após mudanças:
 ### CI/CD Pipeline
 
 O projeto possui um pipeline automatizado que executa:
-- ✅ **Testes** em múltiplas versões do Node.js (18, 20, 22)
-- ✅ **Linting** e formatação de código
-- ✅ **Build** e validação
-- ✅ **Docker** build test
-- ✅ **Security scan** com Trivy
+- ✅ **Linting** - Verificação de qualidade do código
+- ✅ **Build** - Compilação TypeScript
+- ✅ **Testes** - Validação funcional (API + Fallback + Build)
 
 ## 📞 Suporte
 
