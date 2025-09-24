@@ -71,9 +71,9 @@ export class Random implements INodeType {
 			const max = this.getNodeParameter('max', i) as number;
 
 			try {
-				
+
 				const url = `https://www.random.org/integers/?num=1&min=${min}&max=${max}&col=1&base=10&format=plain&rnd=new`;
-				
+
 				// Faz a requisição para a API do Random.org
 				const response = await this.helpers.request({
 					method: 'GET',
@@ -94,7 +94,7 @@ export class Random implements INodeType {
 			} catch {
 				// Se a API falhar, usa geração local como fallback
 				const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-				
+
 				returnData.push({
 					json: {
 						randomNumber,

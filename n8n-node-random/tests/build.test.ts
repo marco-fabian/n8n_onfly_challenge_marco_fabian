@@ -27,7 +27,7 @@ describe('Build e Compilação', () => {
   test('deve ter conteúdo válido no arquivo JavaScript', () => {
     const filePath = path.join(distPath, 'Random.node.js');
     const content = fs.readFileSync(filePath, 'utf8');
-    
+
     // Verificar se contém elementos essenciais
     expect(content).toContain('Random');
     expect(content).toContain('execute');
@@ -37,7 +37,7 @@ describe('Build e Compilação', () => {
   test('deve ter conteúdo válido no arquivo SVG', () => {
     const filePath = path.join(distPath, 'random.svg');
     const content = fs.readFileSync(filePath, 'utf8');
-    
+
     // Verificar se é um SVG válido
     expect(content).toContain('<svg');
     expect(content).toContain('</svg>');
